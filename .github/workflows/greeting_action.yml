@@ -1,5 +1,4 @@
 name: Greeting (Action)
-
 on:
   push:
     paths:
@@ -14,7 +13,7 @@ jobs:
     steps:
       - name: Greeting
         id: greeting
-        uses: DynamoDS/workflows/.github/actions/greeting@master
+        uses: DynamoDS/actions/greeting@master
         with:
           message: World
       - name: Random number

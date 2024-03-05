@@ -13,7 +13,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: MSBuild
-        uses: DynamoDS/workflows/.github/actions/msbuild@master
+        uses: DynamoDS/actions/msbuild@master
         with:
           repository: DynamoDS/Dynamo
           dotnet_version: 8.0.x
