@@ -1,0 +1,16 @@
+name: Sync Repo (Action)
+
+on:
+  push:
+  delete:
+
+jobs:
+  Sync:
+    runs-on: dynamo-ubuntu
+    steps:
+      - name: Sync Repo
+        uses: DynamoDS/actions/sync_repo@master
+        with:
+          upstream_repository: ${{ github.repository }}
+          downstream_repository_url: git@git.autodesk.com:Dynamo/actions.git
+          github_event: ${{ github.event_name }}
