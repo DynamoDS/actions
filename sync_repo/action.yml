@@ -29,7 +29,7 @@ runs:
       run: |
         git config --local user.email "<>"
         git config --local user.name "Dynamo GitHub Actions Bot"
-        git remote add mirror ${{ inputs.downstream_repository_url }}
+        git config remote.mirror.url ${{ inputs.downstream_repository_url }}
     - name: Push
       if: inputs.github_event == 'push'
       shell: ${{ inputs.shell }}
