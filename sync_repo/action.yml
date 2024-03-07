@@ -1,0 +1,44 @@
+name: Sync Repo - Push
+description: Sync Repository
+inputs:
+  upstream_repository:
+    description: Upstream Repository
+    required: true
+  downstream_repository_url:
+    description: Downstream Repository
+    required: true
+  github_event:
+    description: Github Event
+    required: true
+  shell:
+    description: Shell
+    default: bash
+    required: false
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v4
+      with:
+        repository: ${{ inputs.upstream_repository }}
+        ref: ${{ github.event.repository.default_branch }}
+        fetch-depth: 0
+    - name: Setup git
+      shell: ${{ inputs.shell }}
+      run: |
+        git config --local user.email "<>"
+        git config --local user.name "Dynamo GitHub Actions Bot"
+        git remote add mirror ${{ inputs.downstream_repository_url }}
+    - name: Push
+      if: inputs.github_event == 'push'
+      shell: ${{ inputs.shell }}
+      run: |
+        git branch -M ${{ github.ref_name }}
+        git push mirror ${{ github.ref_name }}
+    - name: Delete
+      if: inputs.github_event == 'delete'
+      shell: ${{ inputs.shell }}
+      run: |
+        branch_name=$(echo ${{ github.event.ref }} | cut -d'/' -f 3)
+        git push mirror --delete $branch_name
