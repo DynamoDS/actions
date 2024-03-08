@@ -5,7 +5,8 @@ on:
   delete:
 
 jobs:
-  Sync:
+  sync_repo:
+    name: Sync Repo
     runs-on: dynamo-ubuntu
     steps:
       - name: Sync Repo
