@@ -38,11 +38,26 @@ description=$(yq '.description' $input_file)
 inputs=$(yq '.inputs | to_entries | map([.key, .value.description, .value.default, .value.required] | join(" | ")) | join("\n")' $input_file)
 outputs=$(yq '.outputs | to_entries | map([.key, .value.description] | join(" | ")) | join("\n")' $input_file)
 
+# Create the documentation file
 cat > $output_file <<EOF
 <!-- ! This file is auto-generated. Please run ./utils/genereate_docs.sh $action to regenare it. -->
 # $name
 
 $description
+EOF
+
+# Add setup instructions if available
+if [ -f "$action/setup.md" ] ; then
+  cat >> $output_file <<EOF
+
+## Setup
+
+$(cat $action/setup.md)
+EOF
+fi
+
+# Add usage, inputs and outputs
+cat >> $output_file <<EOF
 
 ## Usage
 

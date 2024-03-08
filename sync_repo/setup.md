@@ -1,5 +1,3 @@
-# Requirements
-
 - The downstream repository must be created beforehand.
 - The runner must be configured to have push access to the downstream repository.
 
