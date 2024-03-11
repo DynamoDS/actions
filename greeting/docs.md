@@ -21,5 +21,5 @@ message | Message | World | false
 ## Outputs
 
 Name | Description
-------|-----------
+-----|-----------
 number | Random number

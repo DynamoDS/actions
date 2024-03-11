@@ -23,5 +23,5 @@ shell | Shell | bash | false
 ## Outputs
 
 Name | Description
-------|-----------
+-----|-----------
 

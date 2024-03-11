@@ -25,5 +25,5 @@ runtime_identifier | Runtime Identifier |  | false
 ## Outputs
 
 Name | Description
-------|-----------
+-----|-----------
 

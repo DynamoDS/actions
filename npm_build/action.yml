@@ -17,11 +17,11 @@ runs:
   using: composite
   steps:
     - name: Checkout Repo
-      uses: actions/checkout@v4
+      uses: actions/checkout@b4ffde6 # v4.1.1
       with:
         repository: ${{ inputs.repository }}
     - name: Setup node
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@60edb5d # v4.0.2
       with:
         node-version: ${{ inputs.node_version }}
         cache: npm

@@ -77,7 +77,7 @@ $inputs
 ## Outputs
 
 Name | Description
-------|-----------
+-----|-----------
 $outputs
 EOF
 
