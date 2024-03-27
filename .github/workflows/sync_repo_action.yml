@@ -2,6 +2,8 @@ name: Sync Repo (Action)
 
 on:
   push:
+    branches:
+      - master
   delete:
 
 jobs:
