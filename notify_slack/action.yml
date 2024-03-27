@@ -20,7 +20,7 @@ runs:
       id: set_user_tag
       shell: ${{ inputs.shell }}
       run: |
-        slack_id=$(curl "https://slack.com/api/users.lookupByEmail?token=${{ secrets.DYNAMO_SLACK_NOTIFICATIONS_BOT_TOKEN }}&email=${{ github.event.head_commit.author.email }}" | jq -r '.user.id')
+        slack_id=$(curl "https://slack.com/api/users.lookupByEmail?token=${{ inputs.slack_bot_token }}&email=${{ github.event.head_commit.author.email }}" | jq -r '.user.id')
         if [[ -z $slack_id || $slack_id == "null" ]]; then
           user_tag="<mailto:${{ github.event.head_commit.author.email }}|${{ github.event.head_commit.author.name }}>"
         else
