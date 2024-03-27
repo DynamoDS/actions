@@ -1,4 +1,4 @@
-name: Sync Repo - Push
+name: Sync Repo
 description: Sync Repository
 inputs:
   upstream_repository:

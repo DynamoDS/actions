@@ -1,13 +1,15 @@
+<!-- ! This file is auto-generated. Please run ./utils/generate_readme.sh to regenerate it. -->
 # Actions
 
 Collection of compostite actions
 
-action | description | docs | example workflow | status
--------|-------------|------|------------------|-------
-[greeting](greeting/action.yml) | Greeting | [docs](greeting/docs.md) | [greeting_action.yml](.github/workflows/greeting_action.yml) | [![Greeting (Action)](https://github.com/DynamoDS/actions/actions/workflows/greeting_action.yml/badge.svg)](https://github.com/DynamoDS/actions/actions/workflows/greeting_action.yml)
-[msbuild](msbuild/action.yml) | Build a project with msbuild | [docs](msbuild/docs.md) | [msbuild_action.yml](.github/workflows/msbuild_action.yml) | [![MSBuild (Action)](https://github.com/DynamoDS/actions/actions/workflows/msbuild_action.yml/badge.svg)](https://github.com/DynamoDS/actions/actions/workflows/msbuild_action.yml)
-[npm_build](npm_build/action.yml) | Build a project with npm | [docs](npm_build/docs.md) | [npm_build_action.yml](.github/workflows/npm_build_action.yml) | [![NPM Build (Action)](https://github.com/DynamoDS/actions/actions/workflows/npm_build_action.yml/badge.svg)](https://github.com/DynamoDS/actions/actions/workflows/npm_build_action.yml)
-[sync_repo](sync_repo/action.yml) | Sync repository to a mirror | [docs](sync_repo/docs.md) | [sync_repo_action.yml](.github/workflows/sync_repo_action.yml) | [![Sync Repo (Action)](https://github.com/DynamoDS/actions/actions/workflows/sync_repo_action.yml/badge.svg)](https://github.com/DynamoDS/actions/actions/workflows/sync_repo_action.yml)
+name | description | docs | example workflow | status
+-----|-------------|------|------------------|-------
+[Greeting](greeting/action.yml) | Greeting | [docs](greeting/docs.md) | [greeting_action.yml](.github/workflows/greeting_action.yml) | [![Greeting (Action)](https://github.com/DynamoDS/actions/actions/workflows/greeting_action.yml/badge.svg)](https://github.com/DynamoDS/actions/actions/workflows/greeting_action.yml)
+[MSBuild](msbuild/action.yml) | Build .NET solution with MSBuild | [docs](msbuild/docs.md) | [msbuild_action.yml](.github/workflows/msbuild_action.yml) | [![MSBuild (Action)](https://github.com/DynamoDS/actions/actions/workflows/msbuild_action.yml/badge.svg)](https://github.com/DynamoDS/actions/actions/workflows/msbuild_action.yml)
+[NPM Build](npm_build/action.yml) | Build a Node.js project | [docs](npm_build/docs.md) | [npm_build_action.yml](.github/workflows/npm_build_action.yml) | [![NPM Build (Action)](https://github.com/DynamoDS/actions/actions/workflows/npm_build_action.yml/badge.svg)](https://github.com/DynamoDS/actions/actions/workflows/npm_build_action.yml)
+[Sync Repo](sync_repo/action.yml) | Sync Repository | [docs](sync_repo/docs.md) | [sync_repo_action.yml](.github/workflows/sync_repo_action.yml) | [![Sync Repo (Action)](https://github.com/DynamoDS/actions/actions/workflows/sync_repo_action.yml/badge.svg)](https://github.com/DynamoDS/actions/actions/workflows/sync_repo_action.yml)
+
 
 More info:
 

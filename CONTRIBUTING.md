@@ -8,7 +8,9 @@
 - Generate docs
 
     Run `./utils/generate_docs.sh <action>` to generate `<action>/docs.md`
-- Update [README.md](README.md)
+- Generate [README.md](README.md)
+
+    Run `./utils/generate_readme` to generate `README.md`
 
 More info:
 
