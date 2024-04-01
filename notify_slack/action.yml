@@ -11,26 +11,31 @@ inputs:
 
 runs:
   using: composite
-  steps: 
-    - name: Set user tag
-      id: set_user_tag
-      shell: bash
-      run: |
-        slack_id=$(curl "https://slack.com/api/users.lookupByEmail?token=${{ inputs.slack_bot_token }}&email=${{ github.event.head_commit.author.email }}" | jq -r '.user.id')
-        if [[ -z $slack_id || $slack_id == "null" ]]; then
-          user_tag="<mailto:${{ github.event.head_commit.author.email }}|${{ github.event.head_commit.author.name }}>"
-        else
-          user_tag="<@$slack_id>"
-        fi
-        echo "USER_TAG=$user_tag" >> $GITHUB_OUTPUT
+  steps:
     - name: Set message
       id: set_message
       shell: bash
       run: |
+        commit_sha=${{ github.event.pull_request.head.sha || github.sha }}
+        commit_message=$(git log -n 1 --pretty=format:%s $commit_sha)
+        commit_author_name=$(git log -n 1 --pretty=format:%aN $commit_sha)
+        commit_author_email=$(git log -n 1 --pretty=format:%aE $commit_sha)
+
+        slack_id=$(curl "https://slack.com/api/users.lookupByEmail?token=${{ inputs.slack_bot_token }}&email=$commit_author_email" | jq -r '.user.id')
+        if [[ -z $slack_id || $slack_id == "null" ]]; then
+          user_tag="<mailto:$commit_author_email|$commit_author_name>"
+        else
+          user_tag="<@$slack_id>"
+        fi
+
         job_status="${{ job.status }}"
         run_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
         run_title="${{ github.repository }} » ${{ github.ref_name }} » ${{ github.workflow }}"
+        commit_url="${{ github.server_url }}/${{ github.repository }}/commit/$commit_sha"
+
         echo "MESSAGE_TITLE=*${job_status^^}*: <$run_url|$run_title>" >> $GITHUB_OUTPUT
+        echo "COMMIT_INFO=*Commit:*\n<$commit_url|$commit_message>" >> $GITHUB_OUTPUT
+        echo "AUTHOR_INFO=*Author:*\n$user_tag" >> $GITHUB_OUTPUT
     - name: Send message
       uses: slackapi/slack-github-action@6c661ce58804a1a20f6dc5fbee7f0381b469e001 # v1.25.0
       env:
@@ -53,11 +58,11 @@ runs:
                 "fields": [
                   {
                     "type": "mrkdwn",
-                    "text": "*Commit:*\n<${{ github.event.head_commit.url }}|${{ github.event.head_commit.message }}>"
+                    "text": "${{ steps.set_message.outputs.COMMIT_INFO }}"
                   },
                   {
                     "type": "mrkdwn",
-                    "text": "*Author:*\n${{ steps.set_user_tag.outputs.USER_TAG }}"
+                    "text": "${{ steps.set_message.outputs.AUTHOR_INFO }}"
                   }
                 ]
               }
