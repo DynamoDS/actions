@@ -17,8 +17,8 @@ runs:
       shell: bash
       run: |
         commit_sha=${{ github.event.pull_request.head.sha || github.sha }}
-        commit_author_name=$(git log -n 1 --pretty=format:"%aN" ${{steps.set_commit_sha.outputs.COMMIT_SHA }})
-        commit_author_email=$(git log -n 1 --pretty=format:"%aE" ${{steps.set_commit_sha.outputs.COMMIT_SHA }})
+        commit_author_name=$(git log -n 1 --pretty=format:"%aN" $commit_sha)
+        commit_author_email=$(git log -n 1 --pretty=format:"%aE" $commit_sha)
         slack_id=$(curl "https://slack.com/api/users.lookupByEmail?token=${{ inputs.slack_bot_token }}&email=$commit_author_email" | jq -r '.user.id')
         if [[ -z $slack_id || $slack_id == "null" ]]; then
           user_tag="<mailto:$commit_author_email|$commit_author_name>"
