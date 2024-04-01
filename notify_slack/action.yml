@@ -58,7 +58,7 @@ runs:
                 "fields": [
                   {
                     "type": "mrkdwn",
-                    "text": "${{ steps.set_message.outputs.COMMIT_INFO }}>"
+                    "text": "${{ steps.set_message.outputs.COMMIT_INFO }}"
                   },
                   {
                     "type": "mrkdwn",
