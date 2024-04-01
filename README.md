@@ -11,7 +11,6 @@ name | description | docs | example workflow | status
 [NPM Build](npm_build/action.yml) | Build a Node.js project | [docs](npm_build/docs.md) | [npm_build_action.yml](.github/workflows/npm_build_action.yml) | [![NPM Build (Action)](https://github.com/DynamoDS/actions/actions/workflows/npm_build_action.yml/badge.svg)](https://github.com/DynamoDS/actions/actions/workflows/npm_build_action.yml)
 [Sync Repo](sync_repo/action.yml) | Sync Repository | [docs](sync_repo/docs.md) | [sync_repo_action.yml](.github/workflows/sync_repo_action.yml) | [![Sync Repo (Action)](https://github.com/DynamoDS/actions/actions/workflows/sync_repo_action.yml/badge.svg)](https://github.com/DynamoDS/actions/actions/workflows/sync_repo_action.yml)
 
-
 More info:
 
 - [Creating a composite action](https://docs.github.com/en/actions/creating-actions/creating-a-composite-action)

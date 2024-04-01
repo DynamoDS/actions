@@ -10,10 +10,6 @@ inputs:
   github_event:
     description: Github Event
     required: true
-  shell:
-    description: Shell
-    default: bash
-    required: false
 
 runs:
   using: composite
@@ -25,20 +21,20 @@ runs:
         ref: ${{ github.event.repository.default_branch }}
         fetch-depth: 0
     - name: Setup git
-      shell: ${{ inputs.shell }}
+      shell: bash
       run: |
         git config --local user.email "<>"
         git config --local user.name "Dynamo GitHub Actions Bot"
         git config remote.mirror.url ${{ inputs.downstream_repository_url }}
     - name: Push
       if: inputs.github_event == 'push'
-      shell: ${{ inputs.shell }}
+      shell: bash
       run: |
         git branch -M ${{ github.ref_name }}
         git push mirror ${{ github.ref_name }}
     - name: Delete
       if: inputs.github_event == 'delete'
-      shell: ${{ inputs.shell }}
+      shell: bash
       run: |
         branch_name=$(echo ${{ github.event.ref }} | cut -d'/' -f 3)
         git push mirror --delete $branch_name

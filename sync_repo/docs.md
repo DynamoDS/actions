@@ -1,4 +1,4 @@
-<!-- ! This file is auto-generated. Please run ./utils/genereate_docs.sh sync_repo to regenare it. -->
+<!-- ! This file is auto-generated. Please run ./utils/genereate_docs.sh sync_repo to regenerate it. -->
 # Sync Repository
 
 Sync Repository
@@ -26,7 +26,6 @@ Name | Description | Default | Required
 upstream_repository | Upstream Repository |  | true
 downstream_repository_url | Downstream Repository |  | true
 github_event | Github Event |  | true
-shell | Shell | bash | false
 
 ## Outputs
 

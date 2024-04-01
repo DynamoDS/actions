@@ -1,4 +1,4 @@
-<!-- ! This file is auto-generated. Please run ./utils/genereate_docs.sh npm_build to regenare it. -->
+<!-- ! This file is auto-generated. Please run ./utils/genereate_docs.sh npm_build to regenerate it. -->
 # Build a Node.js project
 
 Build a Node.js project

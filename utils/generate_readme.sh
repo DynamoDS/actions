@@ -51,7 +51,6 @@ Collection of compostite actions
 name | description | docs | example workflow | status
 -----|-------------|------|------------------|-------
 $actions
-
 More info:
 
 - [Creating a composite action](https://docs.github.com/en/actions/creating-actions/creating-a-composite-action)
