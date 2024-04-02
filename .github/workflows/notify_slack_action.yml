@@ -13,6 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - name: Notify Slack
-        uses: DynamoDS/actions/notify_slack@master
+        uses: DynamoDS/actions/notify_slack@feature/notify_slack
         with:
           slack_bot_token: ${{ secrets.DYNAMO_SLACK_NOTIFICATIONS_BOT_TOKEN }}
