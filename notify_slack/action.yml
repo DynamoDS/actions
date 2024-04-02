@@ -9,7 +9,7 @@ inputs:
     description: Slack Bot Token
     required: true
   include_commit_info:
-    description: Include commit information slack notification
+    description: Include commit information in slack notification
     default: 'false'
     required: false
 
