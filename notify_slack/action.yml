@@ -77,6 +77,9 @@ runs:
             ]
           })
 
+        payload['blocks'] = blocks
+        print(payload)
+
         with open('payload.json', 'w') as f:
           json.dump(payload, f)
     - name: Send message
