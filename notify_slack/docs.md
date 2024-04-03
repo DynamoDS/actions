@@ -3,6 +3,10 @@
 
 Send notification to Slack
 
+## Setup
+
+- The `Dynamo Notification` app must be added to the slack channel beforehand.
+
 ## Usage
 
 ```yaml
@@ -18,6 +22,7 @@ Name | Description | Default | Required
 -----|-------------|---------|---------
 channel_id | Slack Channel id or name | C06PPSAV6TW | false
 slack_bot_token | Slack Bot Token |  | true
+custom_status | Status to send to slack |  | false
 include_commit_info | Include commit information in slack notification | false | false
 
 ## Outputs

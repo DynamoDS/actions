@@ -1,0 +1,1 @@
+- The `Dynamo Notification` app must be added to the slack channel beforehand.

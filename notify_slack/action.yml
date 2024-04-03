@@ -12,6 +12,13 @@ inputs:
     description: Include commit information in slack notification
     default: 'false'
     required: false
+  custom_status:
+    description: Status to use in slack notification
+    required: false
+  test_results:
+    description: Test results to include in slack notification
+    default: 'false'
+    required: false
 
 runs:
   using: composite
@@ -45,7 +52,7 @@ runs:
         import json
         import os
 
-        job_status = "${{ job.status }}".upper()
+        job_status = "${{ inputs.custom_status || job.status }}".upper()
         run_url = "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
         run_title = "${{ github.repository }} » ${{ github.ref_name }} » ${{ github.workflow }}"
         message_title = f"*{job_status}*: <{run_url}|{run_title}>"
@@ -75,6 +82,15 @@ runs:
                 "text": "${{ steps.set_commit_info.outputs.AUTHOR_INFO }}"
               }
             ]
+          })
+
+        if "${{ inputs.test_results }}" != '':
+          blocks.append({
+            "type": "section",
+            "text": {
+              "type": "mrkdwn",
+              "text": "${{ inputs.test_results }}"
+            }
           })
 
         payload['blocks'] = blocks
