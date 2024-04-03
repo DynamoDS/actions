@@ -12,12 +12,15 @@ inputs:
     description: Include commit information in slack notification
     default: 'false'
     required: false
+  include_test_results:
+    description: Include test results in slack notification
+    default: 'false'
+    required: false
   custom_status:
     description: Status to use in slack notification
     required: false
   test_results:
     description: Test results to include in slack notification
-    default: 'false'
     required: false
 
 runs:
@@ -84,7 +87,7 @@ runs:
             ]
           })
 
-        if "${{ inputs.test_results }}" != '':
+        if "${{ inputs.include_test_results }}" != 'true':
           blocks.append({
             "type": "section",
             "text": {

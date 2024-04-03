@@ -22,8 +22,10 @@ Name | Description | Default | Required
 -----|-------------|---------|---------
 channel_id | Slack Channel id or name | C06PPSAV6TW | false
 slack_bot_token | Slack Bot Token |  | true
-custom_status | Status to send to slack |  | false
 include_commit_info | Include commit information in slack notification | false | false
+include_test_results | Include test results in slack notification | false | false
+custom_status | Status to use in slack notification |  | false
+test_results | Test results to include in slack notification |  | false
 
 ## Outputs
 
