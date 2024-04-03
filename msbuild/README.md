@@ -1,4 +1,4 @@
-<!-- ! This file is auto-generated. Please run ./utils/genereate_docs.sh msbuild to regenerate it. -->
+<!-- ! This file is auto-generated. Please run ./utils/generate_docs.sh msbuild to regenerate it. -->
 # Build .NET solution with MSBuild
 
 Build .NET solution with MSBuild

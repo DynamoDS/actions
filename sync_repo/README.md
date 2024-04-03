@@ -1,4 +1,4 @@
-<!-- ! This file is auto-generated. Please run ./utils/genereate_docs.sh sync_repo to regenerate it. -->
+<!-- ! This file is auto-generated. Please run ./utils/generate_docs.sh sync_repo to regenerate it. -->
 # Sync Repository
 
 Sync Repository

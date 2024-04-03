@@ -3,14 +3,14 @@
 ## Creating action
 
 - Read the doc on [Creating a composite action](https://docs.github.com/en/actions/creating-actions/creating-a-composite-action).
-- Create your action.
+- Create your `action`.
 - Add an example workflow in `.github/workflows`
-- Generate docs
+- Generate `action/README.md`
 
-    Run `./utils/generate_docs.sh <action>` to generate `<action>/docs.md`
+    Run `./utils/generate_docs.sh <action>` to generate `action/README.md`
 - Generate [README.md](README.md)
 
-    Run `./utils/generate_readme` to generate `README.md`
+    Run `./utils/generate_readme.sh` to generate `README.md`
 
 More info:
 

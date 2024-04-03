@@ -1,4 +1,4 @@
-<!-- ! This file is auto-generated. Please run ./utils/genereate_docs.sh greeting to regenerate it. -->
+<!-- ! This file is auto-generated. Please run ./utils/generate_docs.sh greeting to regenerate it. -->
 # Greeting
 
 Greeting

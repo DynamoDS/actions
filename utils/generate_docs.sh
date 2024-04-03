@@ -24,7 +24,7 @@ if [ ! -d "$action" ]; then
 fi
 
 input_file="$action/action.yml"
-output_file="$action/docs.md"
+output_file="$action/README.md"
 
 if [ ! -f "$input_file" ]; then
   echo "❌ file not found: $input_file"
@@ -40,7 +40,7 @@ outputs=$(yq '.outputs | to_entries | map([.key, .value.description] | join(" | 
 
 # Create the documentation file
 cat > $output_file <<EOF
-<!-- ! This file is auto-generated. Please run ./utils/genereate_docs.sh $action to regenerate it. -->
+<!-- ! This file is auto-generated. Please run ./$0 $action to regenerate it. -->
 # $name
 
 $description

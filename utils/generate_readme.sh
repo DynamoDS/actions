@@ -25,8 +25,9 @@ for dir in */ ; do
     example_workflow=""
     status=""
 
-    if [ -f "$action/docs.md" ]; then
-      docs="[docs]($action/docs.md)"
+    # sh $(dirname $0)/generate_docs.sh $action
+    if [ -f "$action/README.md" ]; then
+      docs="[docs]($action/README.md)"
     fi
 
     workflow="${action}_action.yml"
@@ -43,7 +44,7 @@ done
 
 # Create the readme file
 cat > $output_file <<EOF
-<!-- ! This file is auto-generated. Please run ./utils/generate_readme.sh to regenerate it. -->
+<!-- ! This file is auto-generated. Please run ./$0 to regenerate it. -->
 # Actions
 
 Collection of compostite actions

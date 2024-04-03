@@ -1,4 +1,4 @@
-<!-- ! This file is auto-generated. Please run ./utils/genereate_docs.sh notify_slack to regenerate it. -->
+<!-- ! This file is auto-generated. Please run ./utils/generate_docs.sh notify_slack to regenerate it. -->
 # Send notification to Slack
 
 Send notification to Slack
