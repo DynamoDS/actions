@@ -21,9 +21,3 @@ dotnet_version | Dotnet Version | 8.0.x | false
 solution_path | Solution Path |  | true
 build_configuration | Build Configuration | Release | false
 runtime_identifier | Runtime Identifier |  | false
-
-## Outputs
-
-Name | Description
------|-----------
-

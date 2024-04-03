@@ -19,9 +19,3 @@ Name | Description | Default | Required
 repository | Repository |  | true
 node_version | Node Version | 20 | false
 shell | Shell | bash | false
-
-## Outputs
-
-Name | Description
------|-----------
-

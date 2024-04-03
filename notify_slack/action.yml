@@ -87,7 +87,7 @@ runs:
             ]
           })
 
-        if "${{ inputs.include_test_results }}" != 'true':
+        if "${{ inputs.include_test_results }}" == 'true':
           blocks.append({
             "type": "section",
             "text": {

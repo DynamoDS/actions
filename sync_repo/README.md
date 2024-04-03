@@ -26,9 +26,3 @@ Name | Description | Default | Required
 upstream_repository | Upstream Repository |  | true
 downstream_repository_url | Downstream Repository |  | true
 github_event | Github Event |  | true
-
-## Outputs
-
-Name | Description
------|-----------
-

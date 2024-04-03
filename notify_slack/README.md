@@ -26,9 +26,3 @@ include_commit_info | Include commit information in slack notification | false |
 include_test_results | Include test results in slack notification | false | false
 custom_status | Status to use in slack notification |  | false
 test_results | Test results to include in slack notification |  | false
-
-## Outputs
-
-Name | Description
------|-----------
-

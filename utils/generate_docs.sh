@@ -56,7 +56,7 @@ $(cat $action/setup.md)
 EOF
 fi
 
-# Add usage, inputs and outputs
+# Add usage and inputs
 cat >> $output_file <<EOF
 
 ## Usage
@@ -73,6 +73,11 @@ with:
 Name | Description | Default | Required
 -----|-------------|---------|---------
 $inputs
+EOF
+
+# Add outputs if available
+if [ -n "$outputs" ]; then
+  cat >> $output_file <<EOF
 
 ## Outputs
 
@@ -80,5 +85,6 @@ Name | Description
 -----|-----------
 $outputs
 EOF
+fi
 
 echo "✅ Documentation generated: $output_file"
