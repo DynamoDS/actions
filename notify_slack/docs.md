@@ -18,6 +18,7 @@ Name | Description | Default | Required
 -----|-------------|---------|---------
 channel_id | Slack Channel id or name | C06PPSAV6TW | false
 slack_bot_token | Slack Bot Token |  | true
+include_commit_info | Include commit information in slack notification | false | false
 
 ## Outputs
 

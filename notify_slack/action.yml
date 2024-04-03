@@ -8,63 +8,84 @@ inputs:
   slack_bot_token:
     description: Slack Bot Token
     required: true
+  include_commit_info:
+    description: Include commit information in slack notification
+    default: 'false'
+    required: false
 
 runs:
   using: composite
   steps:
-    - name: Set message
-      id: set_message
+    - name: Checkout
+      uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
+    - name: Set commit info
+      id: set_commit_info
+      if: inputs.include_commit_info == 'true'
       shell: bash
       run: |
         commit_sha=${{ github.event.pull_request.head.sha || github.sha }}
         commit_message=$(git log -n 1 --pretty=format:%s $commit_sha)
         commit_author_name=$(git log -n 1 --pretty=format:%aN $commit_sha)
         commit_author_email=$(git log -n 1 --pretty=format:%aE $commit_sha)
+        commit_url="${{ github.server_url }}/${{ github.repository }}/commit/$commit_sha"
 
-        slack_id=$(curl "https://slack.com/api/users.lookupByEmail?token=${{ inputs.slack_bot_token }}&email=$commit_author_email" | jq -r '.user.id')
+        api_url="https://slack.com/api/users.lookupByEmail?token=${{ inputs.slack_bot_token }}&email=$commit_author_email"
+        slack_id=$(curl $api_url | jq -r '.user.id')
         if [[ -z $slack_id || $slack_id == "null" ]]; then
           user_tag="<mailto:$commit_author_email|$commit_author_name>"
         else
           user_tag="<@$slack_id>"
         fi
 
-        job_status="${{ job.status }}"
-        run_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-        run_title="${{ github.repository }} » ${{ github.ref_name }} » ${{ github.workflow }}"
-        commit_url="${{ github.server_url }}/${{ github.repository }}/commit/$commit_sha"
-
-        echo "MESSAGE_TITLE=*${job_status^^}*: <$run_url|$run_title>" >> $GITHUB_OUTPUT
         echo "COMMIT_INFO=*Commit:*\n<$commit_url|$commit_message>" >> $GITHUB_OUTPUT
         echo "AUTHOR_INFO=*Author:*\n$user_tag" >> $GITHUB_OUTPUT
+    - name: Create payload
+      shell: python
+      run: |
+        import json
+        import os
+
+        job_status = "${{ job.status }}".upper()
+        run_url = "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        run_title = "${{ github.repository }} » ${{ github.ref_name }} » ${{ github.workflow }}"
+        message_title = f"*{job_status}*: <{run_url}|{run_title}>"
+
+        payload = {}
+        blocks = []
+
+        payload['text'] = message_title
+        blocks.append({
+          "type": "section",
+          "text": {
+            "type": "mrkdwn",
+            "text": message_title
+          }
+        })
+
+        if "${{ inputs.include_commit_info }}" == 'true':
+          blocks.append({
+            "type": "section",
+            "fields": [
+              {
+                "type": "mrkdwn",
+                "text": "${{ steps.set_commit_info.outputs.COMMIT_INFO }}"
+              },
+              {
+                "type": "mrkdwn",
+                "text": "${{ steps.set_commit_info.outputs.AUTHOR_INFO }}"
+              }
+            ]
+          })
+
+        payload['blocks'] = blocks
+        print(payload)
+
+        with open('payload.json', 'w') as f:
+          json.dump(payload, f)
     - name: Send message
       uses: slackapi/slack-github-action@6c661ce58804a1a20f6dc5fbee7f0381b469e001 # v1.25.0
       env:
         SLACK_BOT_TOKEN: ${{ inputs.slack_bot_token }}
       with:
         channel-id: ${{ inputs.channel_id }}
-        payload: |
-          {
-            "text": "${{ steps.set_message.outputs.MESSAGE_TITLE }}",
-            "blocks": [
-              {
-                "type": "section",
-                "text": {
-                  "type": "mrkdwn",
-                  "text": "${{ steps.set_message.outputs.MESSAGE_TITLE }}"
-                }
-              },
-              {
-                "type": "section",
-                "fields": [
-                  {
-                    "type": "mrkdwn",
-                    "text": "${{ steps.set_message.outputs.COMMIT_INFO }}"
-                  },
-                  {
-                    "type": "mrkdwn",
-                    "text": "${{ steps.set_message.outputs.AUTHOR_INFO }}"
-                  }
-                ]
-              }
-            ]
-          }
+        payload-file-path: payload.json
