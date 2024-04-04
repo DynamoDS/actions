@@ -3,7 +3,7 @@ description: Send notification to Slack
 inputs:
   channel_id:
     description: Slack Channel id or name
-    default: C06PPSAV6TW #dynamo-build-notify
+    default: C0P46V3A8 #slack-test
     required: false
   slack_bot_token:
     description: Slack Bot Token
@@ -12,15 +12,15 @@ inputs:
     description: Include commit information in slack notification
     default: 'false'
     required: false
-  include_test_results:
-    description: Include test results in slack notification
+  include_custom_message:
+    description: Include custom message in slack notification
     default: 'false'
     required: false
   custom_status:
-    description: Status to use in slack notification
+    description: Custom status to use in slack notification
     required: false
-  test_results:
-    description: Test results to include in slack notification
+  custom_message:
+    description: Custom message to include in slack notification
     required: false
 
 runs:
@@ -53,7 +53,6 @@ runs:
       shell: python
       run: |
         import json
-        import os
 
         job_status = "${{ inputs.custom_status || job.status }}".upper()
         run_url = "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
@@ -87,12 +86,12 @@ runs:
             ]
           })
 
-        if "${{ inputs.include_test_results }}" == 'true':
+        if "${{ inputs.include_custom_message }}" == 'true':
           blocks.append({
             "type": "section",
             "text": {
               "type": "mrkdwn",
-              "text": "${{ inputs.test_results }}"
+              "text": "${{ inputs.custom_message }}"
             }
           })
 

@@ -20,9 +20,9 @@ with:
 
 Name | Description | Default | Required
 -----|-------------|---------|---------
-channel_id | Slack Channel id or name | C06PPSAV6TW | false
+channel_id | Slack Channel id or name | C0P46V3A8 | false
 slack_bot_token | Slack Bot Token |  | true
 include_commit_info | Include commit information in slack notification | false | false
-include_test_results | Include test results in slack notification | false | false
-custom_status | Status to use in slack notification |  | false
-test_results | Test results to include in slack notification |  | false
+include_custom_message | Include custom message in slack notification | false | false
+custom_status | Custom status to use in slack notification |  | false
+custom_message | Custom message to include in slack notification |  | false
