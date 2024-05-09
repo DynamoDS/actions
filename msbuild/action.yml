@@ -15,8 +15,8 @@ inputs:
     description: Build Configuration
     default: Release
     required: false
-  runtime_identifier:
-    description: Runtime Identifier
+  additional_arguments:
+    description: Additional Arguments
     required: false
 
 runs:
@@ -38,7 +38,7 @@ runs:
     - name: Restore dependencies
       shell: pwsh
       run: |
-        dotnet restore ${{ github.workspace }}\${{ inputs.solution_path }} /p:Configuration=${{ inputs.build_configuration }} --runtime=${{ inputs.runtime_identifier }}
+        dotnet restore ${{ github.workspace }}\${{ inputs.solution_path }} /p:Configuration=${{ inputs.build_configuration }} ${{ inputs.additional_arguments }}
     - name: Build Solution
       shell: pwsh
       run: |

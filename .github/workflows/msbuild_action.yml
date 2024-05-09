@@ -19,7 +19,7 @@ jobs:
           dotnet_version: 8.0.x
           solution_path: src\Dynamo.All.sln
           build_configuration: Release
-          runtime_identifier: win-x64
+          additional_arguments: --runtime=win-x64
       - name: Look for DynamoCLI.exe
         run: |
           Write-Output "***Locating DynamoCLI.exe!***"
