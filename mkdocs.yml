@@ -1,0 +1,56 @@
+site_name: Actions
+site_description: Collection of compostite actions
+
+repo_url: https://github.com/DynamoDS/actions
+edit_uri: blob/master
+
+docs_dir: .
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: purple
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/cog
+        name: Switch to system preference
+  features:
+    - content.code.copy
+    - content.action.edit
+    - navigation.top
+    - toc.follow
+
+plugins:
+  - search
+  - same-dir
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+
+nav:
+  - Home: README.md
+  - Actions:
+      - Greeting: greeting/README.md
+      - MSBuild: msbuild/README.md
+      - Notify Slack: notify_slack/README.md
+      - NPM BUild: npm_build/README.md
+      - Sync Repo: sync_repo/README.md
+  - Contributing: CONTRIBUTING.md

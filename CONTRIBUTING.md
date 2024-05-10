@@ -1,4 +1,4 @@
-# Contributing Guidelines
+# Contributing
 
 ## Creating action
 
@@ -8,7 +8,8 @@
 - Generate `action/README.md`
 
     Run `./utils/generate_docs.sh <action>` to generate `action/README.md`
-- Generate [README.md](README.md)
+
+- Generate README.md
 
     Run `./utils/generate_readme.sh` to generate `README.md`
 

@@ -19,7 +19,7 @@ for dir in */ ; do
   action_file="$action/action.yml"
   if [ -f "$action_file" ]; then
     action_name=$(yq '.name' $action_file)
-    name="[$action_name]($action_file)"
+    name="[$action_name]($repo/blob/master/$action_file)"
     description=$(yq '.description' $action_file)
     docs=""
     example_workflow=""
