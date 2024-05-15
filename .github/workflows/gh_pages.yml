@@ -36,5 +36,9 @@ jobs:
           restore-keys: mkdocs-
       - name: Install dependencies
         run: pip install -r requirements.txt
+      - name: Configure Git Credentials
+        run: |
+          git config --local user.email "dynamo@autodesk.com"
+          git config --local user.name "Dynamo GitHub Actions[bot]"
       - name: Deploy to GitHub pages
         run: mkdocs gh-deploy --force
