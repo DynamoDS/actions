@@ -1,0 +1,45 @@
+name: MSBuild
+description: Build .NET solution with MSBuild
+inputs:
+  repository:
+    description: Repository
+    required: true
+  dotnet_version:
+    description: Dotnet Version
+    default: 8.0.x
+    required: false
+  solution_path:
+    description: Solution Path
+    required: true
+  build_configuration:
+    description: Build Configuration
+    default: Release
+    required: false
+  additional_arguments:
+    description: Additional Arguments
+    required: false
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout Repo
+      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+      with:
+        repository: ${{ inputs.repository }}
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@4d6c8fcf3c8f7a60068d26b594648e99df24cee3 #v4.0.0
+      with:
+        dotnet-version: ${{ inputs.dotnet_version }}
+    - name: Disable problem matcher
+      shell: pwsh
+      run: Write-Output "::remove-matcher owner=csc::"
+    - name: Setup msbuild
+      uses: microsoft/setup-msbuild@6fb02220983dee41ce7ae257b6f4d8f9bf5ed4ce # v2
+    - name: Restore dependencies
+      shell: pwsh
+      run: |
+        dotnet restore ${{ github.workspace }}\${{ inputs.solution_path }} /p:Configuration=${{ inputs.build_configuration }} ${{ inputs.additional_arguments }}
+    - name: Build Solution
+      shell: pwsh
+      run: |
+        msbuild ${{ github.workspace }}\${{ inputs.solution_path }} /p:Configuration=${{ inputs.build_configuration }}

@@ -1,0 +1,24 @@
+name: Greeting
+description: Greeting
+inputs:
+  message:
+    description: Message
+    default: World
+    required: false
+outputs:
+  number:
+    description: Random number
+    value: ${{ steps.random_number.outputs.number }}
+
+runs:
+  using: composite
+  steps:
+    - name: Greeting
+      shell: bash
+      run: echo "Hello $MESSAGE"
+      env:
+        MESSAGE: ${{ inputs.message }}
+    - name: Random Number
+      id: random_number
+      shell: bash
+      run: echo "number=$(echo $RANDOM)" >> $GITHUB_OUTPUT
